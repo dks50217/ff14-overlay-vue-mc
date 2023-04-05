@@ -43,7 +43,7 @@ const showHeader = /^(?:1|true|yes|on|open|enabled|undefined)$/i.test(params?.sh
     background-color: transparent;
     cursor: pointer;
     color: white;
-    font-family: "微软雅黑";
+    font-family: "微軟雅黑";
     text-shadow: -1px 0 2px #000, 0 1px 2px #000, 1px 0 2px #000, 0 -1px 2px #000;
     &:hover {
       transition-duration: 0.05s !important;

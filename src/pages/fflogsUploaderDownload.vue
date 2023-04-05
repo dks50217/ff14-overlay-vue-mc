@@ -25,23 +25,23 @@ interface resJson {
 
 const data = reactive({ res: {} as resJson });
 const accelerationNodeList = [
-  { url: "https://gh.gh2233.ml/https://github.com", title: "美国" },
-  { url: "https://gh.ddlc.top/https://github.com", title: "美国" },
-  { url: "https://gh2.yanqishui.work/https://github.com", title: "美国" },
-  { url: "https://gh-proxy-misakano7545.koyeb.app/https://github.com", title: "美国" },
-  { url: "https://gh.flyinbug.top/gh/https://github.com", title: "美国" },
-  { url: "https://github.91chi.fun/https://github.com", title: "美国" },
-  { url: "https://proxy.zyun.vip/https://github.com", title: "美国" },
-  { url: "https://git.xfj0.cn/https://github.com", title: "美国" },
-  { url: "https://gh.con.sh/https://github.com", title: "美国" },
-  { url: "https://ghps.cc/https://github.com", title: "美国" },
-  { url: "https://cors.isteed.cc/github.com", title: "美国" },
-  { url: "https://cdn.githubjs.cf", title: "美国" },
+  { url: "https://gh.gh2233.ml/https://github.com", title: "美國" },
+  { url: "https://gh.ddlc.top/https://github.com", title: "美國" },
+  { url: "https://gh2.yanqishui.work/https://github.com", title: "美國" },
+  { url: "https://gh-proxy-misakano7545.koyeb.app/https://github.com", title: "美國" },
+  { url: "https://gh.flyinbug.top/gh/https://github.com", title: "美國" },
+  { url: "https://github.91chi.fun/https://github.com", title: "美國" },
+  { url: "https://proxy.zyun.vip/https://github.com", title: "美國" },
+  { url: "https://git.xfj0.cn/https://github.com", title: "美國" },
+  { url: "https://gh.con.sh/https://github.com", title: "美國" },
+  { url: "https://ghps.cc/https://github.com", title: "美國" },
+  { url: "https://cors.isteed.cc/github.com", title: "美國" },
+  { url: "https://cdn.githubjs.cf", title: "美國" },
   { url: "https://download.fastgit.org", title: "日本" },
-  { url: "https://gitclone.com", title: "国内" },
+  { url: "https://gitclone.com", title: "國內" },
   { url: "https://hub.fastgit.xyz", title: "日本" },
-  { url: "https://ghproxy.com/https://github.com", title: "韩国" },
-  { url: "https://gh.gcdn.mirr.one", title: "俄罗斯" },
+  { url: "https://ghproxy.com/https://github.com", title: "韓國" },
+  { url: "https://gh.gcdn.mirr.one", title: "俄羅斯" },
 ];
 onMounted(() => {
   fetch("https://api.github.com/repos/RPGLogs/Uploaders-fflogs/releases/latest", { method: "GET" })
@@ -56,7 +56,7 @@ onMounted(() => {
     .catch((err) => {
       Swal.fire({
         icon: "error",
-        title: "错误",
+        title: "錯誤",
         text: err,
       });
     });
@@ -67,10 +67,10 @@ onMounted(() => {
   <div class="common-layout">
     <el-container>
       <el-main>
-        <h1>FFLOGS上传器 加速下载</h1>
+        <h1>FFLOGS上傳器 加速下載</h1>
         <h2>最新版本：{{ data.res.tag_name || "loading" }}</h2>
-        <h2>更新时间：{{ data.res.published_at || "loading" }}</h2>
-        <h3 v-if="data.res.tag_name">加速节点：</h3>
+        <h2>更新時間：{{ data.res.published_at || "loading" }}</h2>
+        <h3 v-if="data.res.tag_name">加速節點：</h3>
         <div flex="~ col wrap gap1" items-start>
           <el-link
             v-if="data.res.tag_name"
@@ -80,7 +80,7 @@ onMounted(() => {
             type="primary"
             m-r-8px
           >
-            <span>{{ index + 1 }}.{{ item.title }}节点</span>
+            <span>{{ index + 1 }}.{{ item.title }}節點</span>
           </el-link>
         </div>
       </el-main>

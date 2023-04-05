@@ -4,8 +4,8 @@
       <ul v-if="actionTimeline.show">
         <li class="li-head">
           <aside>秒</aside>
-          <h5>邪龙</h5>
-          <h5>圣龙</h5>
+          <h5>邪龍</h5>
+          <h5>聖龍</h5>
         </li>
         <li class="li-main" v-for="(second, i) in actionTimeline.data" :key="i">
           <aside>{{ i }}</aside>
@@ -28,7 +28,7 @@ addOverlayListener("LogLine", handleLogLine);
 startOverlayEvents();
 const targetName = {
   xie: ["尼德霍格", "ニーズヘッグ", "Nidhogg"],
-  sheng: ["赫拉斯瓦尔格", "フレースヴェルグ", "Hraesvelgr"],
+  sheng: ["赫拉斯瓦爾格", "フレースヴェルグ", "Hraesvelgr"],
 };
 const actionTimeline: { show: boolean; data: { xie: string[]; xieHP: string; sheng: string[]; shengHP: string }[] } =
   reactive({

@@ -32,8 +32,8 @@ setInterval(() => {
       </el-main>
     </el-container>
     <footer v-if="dev">
-      <el-button @click="castingMonitorStore.testParty(true)">虚假小队</el-button>
-      <el-button @click="castingMonitorStore.testParty(false)">单人</el-button>
+      <el-button @click="castingMonitorStore.testParty(true)">虛假小隊</el-button>
+      <el-button @click="castingMonitorStore.testParty(false)">單人</el-button>
       <el-button @click="castingMonitorStore.testAction()">Action</el-button>
       <el-button @click="castingMonitorStore.testItem()">Item</el-button>
       <el-button @click="castingMonitorStore.testItemHQ()">ItemHQ</el-button>

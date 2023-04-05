@@ -105,7 +105,7 @@ const displayGCD = Number(/^(?:1|true|yes|on|open|enabled)$/i.test(params.displa
       position: absolute;
       height: 48px;
       width: 48px;
-      //src有值之前隐藏默认img灰色边框
+      //src有值之前隱藏預設img灰色邊框
       opacity: 0;
     }
     &.action .frame,
@@ -127,7 +127,7 @@ const displayGCD = Number(/^(?:1|true|yes|on|open|enabled)$/i.test(params.displa
     }
   }
 
-  //自动攻击
+  //自動攻擊
   .action-category-1 {
     transform: scale(0.25);
     transform-origin: top;
@@ -140,7 +140,7 @@ const displayGCD = Number(/^(?:1|true|yes|on|open|enabled)$/i.test(params.displa
     display: none;
     z-index: 20;
   }
-  //魔法 战技 特殊技能 弩炮
+  //魔法 戰技 特殊技能 弩炮
   .action-category-2,
   .action-category-3,
   .action-category-13,
@@ -159,7 +159,7 @@ const displayGCD = Number(/^(?:1|true|yes|on|open|enabled)$/i.test(params.displa
     }
   }
 
-  //能力 道具 采集能力 制作能力 任务 极限技 系统 系统 坐骑 道具操作 极限技 action的道具 action的道具HQ
+  //能力 道具 採集能力 製作能力 任務 極限技 系統 系統 坐騎 道具操作 極限技 action的道具 action的道具HQ
   .action-category-4,
   .action-category-5,
   .action-category-6,

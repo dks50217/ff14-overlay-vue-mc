@@ -6,7 +6,7 @@ import { ElMessage, ElMessageBox } from "element-plus";
 const BattleJobs: string[] = Util.getBattleJobs().filter(() => true);
 const CONFIG = useStorage("ok-ast-card-config", {
   lang: "cn" as "cn" | "ja" | "en",
-  partySort: "战骑枪暗白占贤学僧龙忍侍镰诗机舞黑召赤青",
+  partySort: "戰騎槍暗白佔賢學僧龍忍侍鐮詩機舞黑召赤青",
   redraw: true,
   astrodyne: true,
   queueTimes: 3,
@@ -18,34 +18,34 @@ const langOptions = [
   { label: "英文", value: "en" },
 ];
 const cardTypeOptions = [
-  { label: "近战", value: "melee" },
-  { label: "远程", value: "range" },
+  { label: "近戰", value: "melee" },
+  { label: "遠端", value: "range" },
 ];
 const [showConfig, toggleConfig] = useToggle(false);
 const jobConvert = {
-  "骑": [1, 19],
+  "騎": [1, 19],
   "僧": [2, 20],
-  "战": [3, 21],
-  "龙": [4, 22],
-  "诗": [5, 23],
+  "戰": [3, 21],
+  "龍": [4, 22],
+  "詩": [5, 23],
   "白": [6, 24],
   "黑": [7, 25],
   "召": [26, 27],
-  "学": [28],
+  "學": [28],
   "忍": [29, 30],
-  "机": [31],
+  "機": [31],
   "暗": [32],
   "占": [33],
   "武": [34],
   "侍": [34],
   "赤": [35],
   "青": [36],
-  "绝": [37],
-  "枪": [37],
+  "絕": [37],
+  "槍": [37],
   "舞": [38],
-  "钐": [39],
-  "镰": [39],
-  "贤": [40],
+  "釤": [39],
+  "鐮": [39],
+  "賢": [40],
 };
 const computedJob = computed(() => {
   const job = CONFIG.value.partySort.split("");
@@ -84,11 +84,11 @@ const cardsMap = {
   Spire: { bonus: "range", seal: "Celestial" },
 };
 const debuffs = {
-  keyWords: [{ words: ["伤害降低", "Damage Down", "ダメージ低下"], efficacy: 0.5 }],
+  keyWords: [{ words: ["傷害降低", "Damage Down", "ダメージ低下"], efficacy: 0.5 }],
   keyDebuffs: [
     { ids: [43], efficacy: 0.3 }, //衰弱
-    { ids: [44], efficacy: 0.1 }, //濒死
-    { ids: [1882, 1883, 1884, 1885, 1886, 1887], efficacy: 0.3 }, //太阳神 世界树 放浪神 战争神 河流神 建筑神
+    { ids: [44], efficacy: 0.1 }, //瀕死
+    { ids: [1882, 1883, 1884, 1885, 1886, 1887], efficacy: 0.3 }, //太陽神 世界樹 放浪神 戰爭神 河流神 建築神
   ],
 };
 const jobs = {
@@ -145,7 +145,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //无
+    }, //無
     {
       job: "GLA",
       jobSrc: "",
@@ -155,7 +155,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //剑术师
+    }, //劍術師
     {
       job: "PGL",
       jobSrc: "",
@@ -165,7 +165,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //格斗家
+    }, //格鬥家
     {
       job: "MRD",
       jobSrc: "",
@@ -175,7 +175,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //斧术师
+    }, //斧術師
     {
       job: "LNC",
       jobSrc: "",
@@ -185,7 +185,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //枪术士
+    }, //槍術士
     {
       job: "ARC",
       jobSrc: "",
@@ -205,7 +205,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //幻术师
+    }, //幻術師
     {
       job: "THM",
       jobSrc: "",
@@ -215,7 +215,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //咒术师
+    }, //咒術師
     {
       job: "CRP",
       jobSrc: "",
@@ -235,7 +235,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //段铁匠
+    }, //段鐵匠
     {
       job: "ARM",
       jobSrc: "",
@@ -245,7 +245,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //铸甲匠
+    }, //鑄甲匠
     {
       job: "GSM",
       jobSrc: "",
@@ -265,7 +265,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //制革匠
+    }, //製革匠
     {
       job: "WVR",
       jobSrc: "",
@@ -285,7 +285,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //炼金术师
+    }, //鍊金術師
     {
       job: "CUL",
       jobSrc: "",
@@ -295,7 +295,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //烹调师
+    }, //烹調師
     {
       job: "MIN",
       jobSrc: "",
@@ -305,7 +305,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //采矿工
+    }, //採礦工
     {
       job: "BTN",
       jobSrc: "",
@@ -315,7 +315,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //园艺工
+    }, //園藝工
     {
       job: "FSH",
       jobSrc: "",
@@ -325,7 +325,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //捕鱼人
+    }, //捕魚人
     {
       job: "PLD",
       jobSrc: "",
@@ -335,7 +335,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //骑士
+    }, //騎士
     {
       job: "MNK",
       jobSrc: "",
@@ -394,7 +394,7 @@ const data = useStorage("ok-ast-card-dps", {
         14851.1, 12804.1, 12804.1, 16957.8, 11408.8, 12590.8, 5335.7, 5335.7, 8436.7, 8436.7, 8436.7, 8436.7, 8436.7,
         4283, 4283,
       ],
-    }, //战士
+    }, //戰士
     {
       job: "DRG",
       jobSrc: "",
@@ -423,7 +423,7 @@ const data = useStorage("ok-ast-card-dps", {
         3626.7, 5595.9, 5595.9, 5828.7, 5828.7, 8039.9, 7606.3, 7763.4, 7763.4, 8025.7, 9722.7, 7508.9, 7508.9, 7696.7,
         7696.7, 5149, 5149, 4734.4, 5241.5, 4979.2, 5045.7, 5332.3, 5332.3, 4911.7, 4911.7, 2557.2, 2557.2,
       ],
-    }, //龙骑士
+    }, //龍騎士
     {
       job: "BRD",
       jobSrc: "",
@@ -452,7 +452,7 @@ const data = useStorage("ok-ast-card-dps", {
         6438.9, 6095.9, 6968.2, 7408.9, 7107, 7107, 7107, 8832.8, 7591.5, 7591.5, 11385.8, 11385.8, 9961.9, 9521.3,
         7527.9, 7527.9, 7527.9,
       ],
-    }, //吟游诗人
+    }, //吟遊詩人
     {
       job: "WHM",
       jobSrc: "",
@@ -462,7 +462,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //白魔法师
+    }, //白魔法師
     {
       job: "BLM",
       jobSrc: "",
@@ -492,7 +492,7 @@ const data = useStorage("ok-ast-card-dps", {
         14177.7, 10418.4, 10418.4, 10714.5, 10714.5, 5632.1, 5632.1, 5347.5, 5347.5, 5658.7, 607.4, 607.4, 607.4, 311.3,
         311.3,
       ],
-    }, //黑魔法师
+    }, //黑魔法師
     {
       job: "ACN",
       jobSrc: "",
@@ -502,7 +502,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //秘术师
+    }, //秘術師
     {
       job: "SMN",
       jobSrc: "",
@@ -531,7 +531,7 @@ const data = useStorage("ok-ast-card-dps", {
         4009.1, 3807.9, 6379.1, 5164.1, 5164.1, 5164.1, 5164.1, 5020.9, 5020.9, 3094.5, 3094.5, 3067.4, 5731.2, 5549.8,
         10379.1, 10379.1, 10379.1, 12902.3, 12902.3, 15821.2, 15854.3, 15854.3, 10619.3, 10619.3, 5790, 5790,
       ],
-    }, //召唤师
+    }, //召喚師
     {
       job: "SCH",
       jobSrc: "",
@@ -541,7 +541,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //学者
+    }, //學者
     {
       job: "ROG",
       jobSrc: "",
@@ -551,7 +551,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //双剑师
+    }, //雙劍師
     {
       job: "NIN",
       jobSrc: "",
@@ -609,7 +609,7 @@ const data = useStorage("ok-ast-card-dps", {
         6157.8, 6157.8, 5741.7, 6144.8, 7700.3, 7070.3, 7070.3, 6291.2, 6374.5, 5898.8, 5898.8, 5898.8, 5898.8, 5495.7,
         2151.4, 2151.4, 2151.4, 2151.4, 1735, 325.9,
       ],
-    }, //机工士
+    }, //機工士
     {
       job: "DRK",
       jobSrc: "",
@@ -638,7 +638,7 @@ const data = useStorage("ok-ast-card-dps", {
         5804.8, 5804.8, 5804.8, 5804.8, 3139.5, 3139.5, 9038.8, 7228.6, 5899.3, 5899.3, 6603.3, 6603.3, 6603.3, 6603.3,
         6603.3, 6603.3, 4273.6, 4273.6, 4273.6, 4273.6, 3569.6, 3569.6,
       ],
-    }, //暗黑骑士
+    }, //暗黑騎士
     {
       job: "AST",
       jobSrc: "",
@@ -648,7 +648,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //占星术士
+    }, //占星術士
     {
       job: "SAM",
       jobSrc: "",
@@ -706,7 +706,7 @@ const data = useStorage("ok-ast-card-dps", {
         5325.4, 5325.4, 5325.4, 7842.4, 7842.4, 7763, 8816.7, 8817.7, 5799.6, 5799.6, 7497.4, 7497.4, 7497.4, 6837,
         6841.8, 4619, 6353.3, 6347.2, 6347.2, 6347.2, 4649.5, 4656.2, 11361.6, 9505, 9500.1, 9500.1, 6712.1, 6712.1,
       ],
-    }, //赤魔法师
+    }, //赤魔法師
     {
       job: "BLU",
       jobSrc: "",
@@ -716,7 +716,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //青魔法师
+    }, //青魔法師
     {
       job: "GNB",
       jobSrc: "",
@@ -745,7 +745,7 @@ const data = useStorage("ok-ast-card-dps", {
         28340.8, 28340.8, 28340.8, 27419.3, 28270.1, 8176.7, 8176.7, 8176.7, 9315.8, 8014.5, 8014.5, 9346.9, 9346.9,
         9346.9, 8496.2, 4046.4, 4046.4,
       ],
-    }, //绝枪战士
+    }, //絕槍戰士
     {
       job: "DNC",
       jobSrc: "",
@@ -803,7 +803,7 @@ const data = useStorage("ok-ast-card-dps", {
         5504.1, 8300, 8754.5, 8754.5, 8754.5, 8754.5, 5136.1, 5136.1, 6688.2, 7411.4, 7411.4, 5642.1, 5187.5, 5187.5,
         9210.3, 9832, 9832, 9832, 8279.8, 7556.6, 7556.6, 4644.4,
       ],
-    }, //钐镰客
+    }, //釤鐮客
     {
       job: "SGE",
       jobSrc: "",
@@ -813,7 +813,7 @@ const data = useStorage("ok-ast-card-dps", {
       action: 0,
       cycleTime: 120,
       cycle: [1],
-    }, //贤者
+    }, //賢者
   ].sort((a, b) => BattleJobs.indexOf(b.job) - BattleJobs.indexOf(a.job)),
 });
 const logRegex = {
@@ -986,7 +986,7 @@ function handleOnLogEvent(e: any) {
       } else if (redrawReady()) {
         doAction(redrawActionName[CONFIG.value.lang]);
       } else if (!inCombat) {
-        callOverlayHandler({ call: "PostNamazu", c: "DoTextCommand", p: `/e 没进战斗，发个锤子<se.11>` });
+        callOverlayHandler({ call: "PostNamazu", c: "DoTextCommand", p: `/e 沒進戰鬥，發個錘子<se.11>` });
       } else {
         doAction(astrodyneActionName[CONFIG.value.lang]);
       }
@@ -1077,7 +1077,7 @@ onBeforeUnmount(() => {
   removeOverlayListener("onInCombatChangedEvent", handleInCombatChanged);
 });
 
-const JOBS = "战骑枪暗白占贤学僧龙忍侍镰诗机舞黑召赤青";
+const JOBS = "戰騎槍暗白佔賢學僧龍忍侍鐮詩機舞黑召赤青";
 
 function onBlurEvent(event: FocusEvent): void {
   checkInput();
@@ -1100,8 +1100,8 @@ function checkInput() {
   });
 }
 function restoreSetting() {
-  ElMessageBox.confirm("确定要使表格内填写的DPS数据全部恢复默认值吗？", "警告", {
-    confirmButtonText: "确定",
+  ElMessageBox.confirm("確定要使表格內填寫的DPS數據全部恢復預設值嗎？", "警告", {
+    confirmButtonText: "確定",
     cancelButtonText: "取消",
     type: "warning",
   })
@@ -1112,11 +1112,11 @@ function restoreSetting() {
     .catch(() => {});
 }
 function handleInputCycle(row: { cycle: string; job: string }) {
-  ElMessageBox.prompt("请输入一个数字数组以逗号分隔", "编辑周期", {
-    confirmButtonText: "确定",
+  ElMessageBox.prompt("請輸入一個數字陣列以逗號分隔", "編輯週期", {
+    confirmButtonText: "確定",
     cancelButtonText: "取消",
     inputPattern: /([\d.]+,)*[\d.]+$/,
-    inputErrorMessage: "验证未通过/([\\d.]+,)*[\\d.]+$/",
+    inputErrorMessage: "驗證未通過/([\\d.]+,)*[\\d.]+$/",
     inputValue: row.cycle,
   })
     .then(({ value }) => {
@@ -1139,14 +1139,14 @@ function copyMacro(text: string) {
     document.execCommand("copy");
     document.body.removeChild(input);
   });
-  ElMessage.success("已复制到剪贴板");
+  ElMessage.success("已複製到剪貼簿");
 }
 </script>
 
 <template>
   <el-card shadow="never">
     <el-form :model="CONFIG" label-width="120px" label-position="left">
-      <el-form-item label="客户端语言">
+      <el-form-item label="客戶端語言">
         <el-select v-model="CONFIG.lang">
           <el-option v-for="item in langOptions" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
@@ -1157,9 +1157,9 @@ function copyMacro(text: string) {
         title="注意"
         :width="200"
         trigger="hover"
-        content="必须与游戏内小队排序保持一致">
+        content="必須與遊戲內小隊排序保持一致">
         <template #reference>
-          <el-form-item label="小队排序" style="width: 30rem">
+          <el-form-item label="小隊排序" style="width: 30rem">
             <el-input
               clearable
               v-model.trim="CONFIG.partySort"
@@ -1169,7 +1169,7 @@ function copyMacro(text: string) {
             <el-alert
               v-show="inputAlertText.length > 0"
               :closable="false"
-              :title="`缺少职业：${inputAlertText}`"
+              :title="`缺少職業：${inputAlertText}`"
               type="error"
               show-icon />
           </el-form-item>
@@ -1178,25 +1178,25 @@ function copyMacro(text: string) {
       <el-form-item label="接管能力技"
         >重抽 <el-switch v-model="CONFIG.redraw" /> 星力 <el-switch v-model="CONFIG.astrodyne"
       /></el-form-item>
-      <el-form-item label="每次调用/ac次数">
+      <el-form-item label="每次呼叫/ac次數">
         <el-input-number v-model="CONFIG.queueTimes" :min="0" :max="10" :step="1" :step-strictly="true" size="small" />
       </el-form-item>
     </el-form>
     <el-table v-if="showConfig" :data="data.dps" style="width: 100%" height="433" m-b-3 border>
-      <el-table-column label="职业" width="110">
+      <el-table-column label="職業" width="110">
         <template #default="scope">
           <img loading="lazy" :src="scope.row.jobSrc" :alt="scope.row.job" srcset="" style="height: 1.25rem" />
           {{ Util.nameToFullName(scope.row.job).full }}
         </template>
       </el-table-column>
-      <el-table-column label="近/远" width="100">
+      <el-table-column label="近/遠" width="100">
         <template #default="scope">
-          <el-select v-model="scope.row.type" placeholder="无">
+          <el-select v-model="scope.row.type" placeholder="無">
             <el-option v-for="item in cardTypeOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </template>
       </el-table-column>
-      <el-table-column label="循环标志ID" width="110">
+      <el-table-column label="循環標誌ID" width="110">
         <template #default="scope">
           <el-input-number
             v-model="scope.row.action"
@@ -1208,7 +1208,7 @@ function copyMacro(text: string) {
             style="width: 5rem" />
         </template>
       </el-table-column>
-      <el-table-column label="循环周期" width="110">
+      <el-table-column label="循環週期" width="110">
         <template #default="scope">
           <el-input-number
             v-model="scope.row.cycleTime"
@@ -1220,26 +1220,26 @@ function copyMacro(text: string) {
             style="width: 5rem" />
         </template>
       </el-table-column>
-      <el-table-column label="周期曲线">
+      <el-table-column label="週期曲線">
         <template #default="scope">
-          <el-button @click="handleInputCycle(scope.row)">编辑</el-button>
+          <el-button @click="handleInputCycle(scope.row)">編輯</el-button>
           {{ scope.row.cycle }}
         </template>
       </el-table-column>
     </el-table>
-    <el-button v-if="!showConfig" @click="toggleConfig()" type="primary">展开详细DPS设置</el-button>
+    <el-button v-if="!showConfig" @click="toggleConfig()" type="primary">展開詳細DPS設定</el-button>
     <el-button v-if="showConfig" @click="toggleConfig()" type="primary">收起</el-button>
-    <el-button v-if="showConfig" type="warning" @click="restoreSetting">恢复默认</el-button>
+    <el-button v-if="showConfig" type="warning" @click="restoreSetting">恢復預設</el-button>
     <el-divider />
     <div>
-      <p>依赖<a href="https://github.com/Natsukage/PostNamazu" target="_blank">鲶鱼精邮差</a>v1.3.2.1+</p>
+      <p>依賴<a href="https://github.com/Natsukage/PostNamazu" target="_blank">鯰魚精郵差</a>v1.3.2.1+</p>
       <p>
-        选择一个宏进行控制 <el-button type="info" plain bg @click="copyMacro('/e /card')">默语</el-button>
-        <el-button type="success" plain bg @click="copyMacro('/l1 /card')">本地通讯贝1</el-button
-        >（使用本地通讯贝1可以把它放到不常用的聊天窗口分类中以避免刷屏）
+        選擇一個宏進行控制 <el-button type="info" plain bg @click="copyMacro('/e /card')">默語</el-button>
+        <el-button type="success" plain bg @click="copyMacro('/l1 /card')">本地通訊貝1</el-button
+        >（使用本地通訊貝1可以把它放到不常用的聊天視窗分類中以避免刷屏）
       </p>
-      <p>修改好设置之后，在ACT取消勾选“显示悬浮窗”以后台运行，如果需要修改设置重新勾选以显示本页面。</p>
-      <p>常见问题：我怎么改不了小队排序：先切到act，再点击悬浮窗才可以正确获得焦点。同时你只能编辑输入规则内的文字。</p>
+      <p>修改好設定之後，在ACT取消勾選「顯示懸浮窗」以後臺執行，如果需要修改設定重新勾選以顯示本頁面。</p>
+      <p>常見問題：我怎麼改不了小隊排序：先切到act，再點選懸浮窗才可以正確獲得焦點。同時你只能編輯輸入規則內的文字。</p>
     </div>
   </el-card>
 </template>

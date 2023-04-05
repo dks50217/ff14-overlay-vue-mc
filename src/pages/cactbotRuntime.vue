@@ -14,22 +14,22 @@ const roleAssignLocationNames: Record<Role, string[]> = {
   unknown: ["unknown"],
 };
 const defaultSortArray = [
-  "21", //战
+  "21", //戰
   "32", //暗
-  "37", //枪
-  "19", //骑
+  "37", //槍
+  "19", //騎
   "33", //占
   "24", //白
-  "40", //贤
-  "28", //学
+  "40", //賢
+  "28", //學
   "34", //侍
   "30", //忍
-  "39", //钐
-  "22", //龙
+  "39", //釤
+  "22", //龍
   "20", //僧
   "38", //舞
-  "23", //诗
-  "31", //机
+  "23", //詩
+  "31", //機
   "25", //黑
   "27", //召
   "35", //赤
@@ -41,14 +41,14 @@ const fakeParty: {
   job: number;
   inParty: boolean;
 }[] = [
-  { id: "10000001", name: "虚构战士", job: 21, inParty: true },
-  { id: "10000002", name: "虚构骑士", job: 19, inParty: true },
-  { id: "10000003", name: "虚构占星", job: 33, inParty: true },
-  { id: "10000004", name: "虚构学者", job: 28, inParty: true },
-  { id: "10000005", name: "虚构忍者", job: 30, inParty: true },
-  { id: "10000006", name: "虚构武士", job: 34, inParty: true },
-  { id: "10000007", name: "虚构黑魔", job: 25, inParty: true },
-  { id: "10000008", name: "虚构舞者", job: 38, inParty: true },
+  { id: "10000001", name: "虛構戰士", job: 21, inParty: true },
+  { id: "10000002", name: "虛構騎士", job: 19, inParty: true },
+  { id: "10000003", name: "虛構占星", job: 33, inParty: true },
+  { id: "10000004", name: "虛構學者", job: 28, inParty: true },
+  { id: "10000005", name: "虛構忍者", job: 30, inParty: true },
+  { id: "10000006", name: "虛構武士", job: 34, inParty: true },
+  { id: "10000007", name: "虛構黑魔", job: 25, inParty: true },
+  { id: "10000008", name: "虛構舞者", job: 38, inParty: true },
 ];
 const data: RemovableRef<{
   party: {
@@ -122,7 +122,7 @@ function handleBroadcastMessage(e: { source: string; msg: any }) {
   if (e.source === "soumaUserJS") {
     switch (e.msg.text) {
       case "updateNewPartyRP Success":
-        ElMessage("通信成功");
+        ElMessage("通訊成功");
         break;
       case "requestData":
         broadcastParty();
@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
   removeOverlayListener("BroadcastMessage", handleBroadcastMessage);
 });
 const mouseEnter = ref(false);
-const playerName = ref(isDev ? "虚构占星" : "");
+const playerName = ref(isDev ? "虛構占星" : "");
 function onMouseOver(): void {
   mouseEnter.value = true;
 }
@@ -153,7 +153,7 @@ function onMouseOut(): void {
 </script>
 
 <template>
-  <span v-if="data.party.length === 0" style="color: white; text-shadow: 1px 1px 2px black">等待小队...</span>
+  <span v-if="data.party.length === 0" style="color: white; text-shadow: 1px 1px 2px black">等待小隊...</span>
   <el-container @mouseenter="onMouseOver" @mouseleave="onMouseOut">
     <el-main>
       <transition-group

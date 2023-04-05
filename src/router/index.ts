@@ -12,20 +12,20 @@ const router = createRouter({
 // });
 const routeTitles = new Map(
   Object.entries({
-    "index": "首页",
-    "timeline": "时间轴",
-    "timeline-settings": "时间轴编辑",
-    "instancedAreaInfo": "副本区信息",
-    "stageProgramme": "舞台节目单",
-    "dsrp6": "绝龙诗P6",
-    "obs": "obs自动录制",
+    "index": "首頁",
+    "timeline": "時間軸",
+    "timeline-settings": "時間軸編輯",
+    "instancedAreaInfo": "副本區資訊",
+    "stageProgramme": "舞臺節目單",
+    "dsrp6": "絕龍詩P6",
+    "obs": "obs自動錄製",
     "zoneMacro": "副本宏",
-    "fflogsUploaderDownload": "今天FFLogsUploader更新了吗？",
+    "fflogsUploaderDownload": "今天FFLogsUploader更新了嗎？",
   }),
 );
 router.getRoutes().forEach((route) => (route.meta.title = routeTitles.get(route.name?.toString() ?? "")));
 router.afterEach((to, from) => {
-  document.title = to.meta.title?.toString() ?? "页面";
+  document.title = to.meta.title?.toString() ?? "頁面";
   // if (from.name === "index" && to.name === "index") Swal.close();
   // if (from.name === "index" && to.name === "zoneMacro") location.reload();
 });

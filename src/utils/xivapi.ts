@@ -11,12 +11,12 @@ const site: { first: Site; second: Site } = {
   second: params?.api?.toLowerCase() === "xivapi" ? { site: siteList.cafe } : { site: siteList.xivapi },
 };
 const userAction = {
-  2: { ActionCategoryTargetID: 8, Icon: "/i/000000/000123.png" }, //任务指令
-  3: { ActionCategoryTargetID: 10, Icon: "/i/000000/000104.png" }, //冲刺
-  4: { ActionCategoryTargetID: 5, Icon: "/i/000000/000118.png" }, //坐骑
-  7: { ActionCategoryTargetID: 1, Icon: "/i/000000/000101.png" }, //攻击
-  8: { ActionCategoryTargetID: 1, Icon: "/i/000000/000101.png" }, //攻击
-  25756: { ActionCategoryTargetID: 4, Icon: "/i/003000/003090.png" }, //腐秽大地(隐藏)
+  2: { ActionCategoryTargetID: 8, Icon: "/i/000000/000123.png" }, //任務指令
+  3: { ActionCategoryTargetID: 10, Icon: "/i/000000/000104.png" }, //衝刺
+  4: { ActionCategoryTargetID: 5, Icon: "/i/000000/000118.png" }, //坐騎
+  7: { ActionCategoryTargetID: 1, Icon: "/i/000000/000101.png" }, //攻擊
+  8: { ActionCategoryTargetID: 1, Icon: "/i/000000/000101.png" }, //攻擊
+  25756: { ActionCategoryTargetID: 4, Icon: "/i/003000/003090.png" }, //腐穢大地(隱藏)
 };
 export async function parseAction(
   type: "item" | "action" | "mount" | string,

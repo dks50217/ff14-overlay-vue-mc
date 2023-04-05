@@ -31,8 +31,8 @@ function urlTool(url: string) {
 function handleLogLine(event: { line: string[] }): void {
   if (event.line[0] === "00" && event.line[2] === "0039") {
     const match =
-      event.line[4].match(/当前所在副本区为“(?<zoneName>[^”]+)(?<zoneInstanced>[])”/) ??
-      event.line[4].match(/You are now in the instanced area (?<zoneName>.+?)(?<zoneInstanced>[])”/) ??
+      event.line[4].match(/目前所在副本區為「(?<zoneName>[^」]+)(?<zoneInstanced>[])」/) ??
+      event.line[4].match(/You are now in the instanced area (?<zoneName>.+?)(?<zoneInstanced>[])」/) ??
       event.line[4].match(/インスタンスエリア「(?<zoneName>.+?)(?<zoneInstanced>[])」/);
     if (match) {
       zoneName.value = match.groups!.zoneName;

@@ -46,11 +46,11 @@ async function startParse() {
   loading.value = true;
   let reg = data.value.url.match(/(?<=^|\/)(?<code>[\d\w]{16,})\/?#fight=(?<fight>\d+|last)/);
   if (data.value.api_key.length !== 32) {
-    ElMessageBox.alert("错误的 API key");
+    ElMessageBox.alert("錯誤的 API key");
     return;
   }
   if (!reg) {
-    ElMessage.error("战斗记录输入有误");
+    ElMessage.error("戰鬥記錄輸入有誤");
     return;
   }
   data.value.code = reg.groups!.code;
@@ -169,11 +169,11 @@ const rowClassName: VxeTablePropTypes.RowClassName = ({ row }) => {
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-button type="primary" @click="startParse" :loading="loading">开始分析</el-button>
+              <el-button type="primary" @click="startParse" :loading="loading">開始分析</el-button>
             </el-col>
           </el-row>
           <el-col p-t-3
-            >视角：
+            >視角：
             <vxe-radio-group v-model="data.filter.friendlyID" @change="updateTableData">
               <vxe-radio-button
                 v-for="i in data.friendyIDs"
@@ -199,14 +199,14 @@ const rowClassName: VxeTablePropTypes.RowClassName = ({ row }) => {
         :row-config="{ isHover: false, height: 25 }"
         :row-class-name="rowClassName"
       >
-        <vxe-column title="时间" width="65" fixed="left">
+        <vxe-column title="時間" width="65" fixed="left">
           <template #default="{ row }">
             <span> {{ formatTableTime(row.timestamp) }}</span>
           </template>
         </vxe-column>
         <vxe-column fixed="left" width="140">
           <template #header>
-            <el-switch v-model="data.showCN" inactive-text="原" active-text="汉" size="small" />
+            <el-switch v-model="data.showCN" inactive-text="原" active-text="漢" size="small" />
           </template>
           <template #default="{ row }">
             <span :class="'ability-type-' + row.ability.type">
@@ -214,19 +214,19 @@ const rowClassName: VxeTablePropTypes.RowClassName = ({ row }) => {
             </span>
           </template>
         </vxe-column>
-        <vxe-column title="类型" width="60">
+        <vxe-column title="型別" width="60">
           <template #default="{ row }">
             {{ getAbilityType(row.ability.type) }}
           </template>
         </vxe-column>
-        <vxe-column title="伤害值" width="80">
+        <vxe-column title="傷害值" width="80">
           <template #default="{ row }">
             {{ row.unmitigatedAmount?.toLocaleString() ?? "-" }}
           </template>
         </vxe-column>
-        <vxe-column field="multiplier" title="减伤" width="50" />
-        <vxe-column field="absorbed" title="护盾" width="60" />
-        <vxe-column field="amount" title="实际" width="60" />
+        <vxe-column field="multiplier" title="減傷" width="50" />
+        <vxe-column field="absorbed" title="護盾" width="60" />
+        <vxe-column field="amount" title="實際" width="60" />
         <!-- <vxe-column v-for="b in data.keigenns" :key="b.id" width="24" :show-overflow="false">
           <template #header>
             <div style="overflow: hidden; z-index: 1; position: absolute; left: 0px; top: 4px">
@@ -275,11 +275,11 @@ const rowClassName: VxeTablePropTypes.RowClassName = ({ row }) => {
   width: 8px;
   height: 8px;
 }
-/*滚动条的轨道*/
+/*滾動條的軌道*/
 .mytable-scrollbar ::-webkit-scrollbar-track {
   background-color: #ffffff;
 }
-/*滚动条里面的小方块，能向上向下移动*/
+/*滾動條裡面的小方塊，能向上向下移動*/
 .mytable-scrollbar ::-webkit-scrollbar-thumb {
   background-color: #bfbfbf;
   border-radius: 4px;
@@ -292,7 +292,7 @@ const rowClassName: VxeTablePropTypes.RowClassName = ({ row }) => {
 .mytable-scrollbar ::-webkit-scrollbar-thumb:active {
   background-color: #787878;
 }
-/*边角，即两个滚动条的交汇处*/
+/*邊角，即兩個滾動條的交匯處*/
 .mytable-scrollbar ::-webkit-scrollbar-corner {
   background-color: #ffffff;
 }

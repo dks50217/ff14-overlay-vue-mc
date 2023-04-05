@@ -100,7 +100,7 @@ $trasDuration: 1;
       }
     }
     &.upcoming {
-      font-family: "SmartisanHei", "微软雅黑";
+      font-family: "SmartisanHei", "微軟雅黑";
       opacity: 1;
       font-weight: bold;
       transition-property: all;

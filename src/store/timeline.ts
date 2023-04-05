@@ -18,7 +18,7 @@ import { FFIcon } from "@/types/Fflogs";
 class Timeline implements ITimeline {
   constructor(name: string, condition: ITimelineCondition, timeline: string, codeFight: string) {
     if (Util.iconToJobEnum(condition.job as FFIcon)) {
-      //突然有一天数据格式不一致了 可能是fflogs改返回值了?
+      //突然有一天數據格式不一致了 可能是fflogs改返回值了?
       condition.job = Util.jobEnumToJob(Util.iconToJobEnum(condition.job as FFIcon));
     }
     this.name = name;
@@ -35,30 +35,30 @@ class Timeline implements ITimeline {
 }
 
 const configTranslate: TimelineConfigTranslate = {
-  [TimelineConfigEnum.显示范围]: "显示范围（秒）",
-  [TimelineConfigEnum.变色时间]: "提前变色（秒）",
-  [TimelineConfigEnum.零后持续]: "后续保持（秒）",
-  [TimelineConfigEnum.战前准备]: "倒计时量（秒）",
-  [TimelineConfigEnum.TTS提前量]: "TTS预备（秒）",
-  // [TimelineConfigEnum.刷新频率]: "刷新率（毫秒）",
+  [TimelineConfigEnum.顯示範圍]: "顯示範圍（秒）",
+  [TimelineConfigEnum.變色時間]: "提前變色（秒）",
+  [TimelineConfigEnum.零后持續]: "後續保持（秒）",
+  [TimelineConfigEnum.戰前準備]: "倒計時量（秒）",
+  [TimelineConfigEnum.TTS提前量]: "TTS預備（秒）",
+  // [TimelineConfigEnum.重新整理頻率]: "重新整理率（毫秒）",
 };
 
 const configValues: TimelineConfigValues = {
-  [TimelineConfigEnum.显示范围]: 120,
-  [TimelineConfigEnum.变色时间]: 2.75,
-  [TimelineConfigEnum.零后持续]: 0.5,
-  [TimelineConfigEnum.战前准备]: 30,
+  [TimelineConfigEnum.顯示範圍]: 120,
+  [TimelineConfigEnum.變色時間]: 2.75,
+  [TimelineConfigEnum.零后持續]: 0.5,
+  [TimelineConfigEnum.戰前準備]: 30,
   [TimelineConfigEnum.TTS提前量]: 1,
-  // [TimelineConfigEnum.刷新频率]: 100,
+  // [TimelineConfigEnum.重新整理頻率]: 100,
 };
 
 const showStyleTranslate: ShowStyleTranslate = {
-  "--timeline-width": "时间轴宽度",
-  "--font-size": "字体大小",
-  "--normal-scale": "等待缩放",
-  "--up-coming-scale": "来临缩放",
+  "--timeline-width": "時間軸寬度",
+  "--font-size": "字型大小",
+  "--normal-scale": "等待縮放",
+  "--up-coming-scale": "來臨縮放",
   "--opacity": "等待不透明度",
-  "--tras-duration": "动画时间",
+  "--tras-duration": "動畫時間",
 };
 
 let showStyle: ShowStyle = {
@@ -89,30 +89,30 @@ export const useTimelineStore = defineStore("timeline", {
     newTimeline(
       title: string = "Demo",
       condition: ITimelineCondition = { zoneId: "0", job: "NONE" },
-      rawTimeline: string = `# 注释的内容不会被解析
-# "<技能名>"会被解析为图片 紧接着一个波浪线可快捷重复技能名
--20 "<中间学派>~刷盾"
-0 "战斗开始" tts "冲呀"
-# 当sync在window的范围内被满足时将进行时间同步
-30 "一运" sync / 14:4.{7}:[^:]*:AAAA:/ window 2.5,2.5
-# 当存在jump时会进跳转至jump时间
-50 "变异化型:蛇" sync / 14:4.{7}:[^:]*:BBBB:/ window 2.5,2.5 jump 1000
-50 "变异化型:兽" sync / 14:4.{7}:[^:]*:CCCC:/ window 2.5,2.5 jump 2000
-1000 "蛇轴"
-2000 "兽轴"
+      rawTimeline: string = `# 註釋的內容不會被解析
+# "<技能名>"會被解析為圖片 緊接著一個波浪線可快捷重複技能名
+-20 "<中間學派>~刷盾"
+0 "戰鬥開始" tts "衝呀"
+# 當sync在window的範圍內被滿足時將進行時間同步
+30 "一運" sync / 14:4.{7}:[^:]*:AAAA:/ window 2.5,2.5
+# 當存在jump時會進跳轉至jump時間
+50 "變異化型:蛇" sync / 14:4.{7}:[^:]*:BBBB:/ window 2.5,2.5 jump 1000
+50 "變異化型:獸" sync / 14:4.{7}:[^:]*:CCCC:/ window 2.5,2.5 jump 2000
+1000 "蛇軸"
+2000 "獸軸"
 `,
-      codeFight: string = "用户创建",
+      codeFight: string = "使用者建立",
     ): number {
       this.allTimelines.push(new Timeline(title, condition, rawTimeline, codeFight));
       this.sortTimelines();
       Swal.fire({
         position: "center",
         icon: "success",
-        title: `“${title}”已创建`,
+        title: `「${title}」已建立`,
         showConfirmButton: false,
         timer: 1000,
       });
-      //如果严谨点应该还要比较create 但重复的demo选错又能怎么样呢
+      //如果嚴謹點應該還要比較create 但重複的demo選錯又能怎麼樣呢
       const result = this.allTimelines.findIndex(
         (t) =>
           t.timeline === rawTimeline &&
@@ -155,7 +155,7 @@ export const useTimelineStore = defineStore("timeline", {
         this.sortTimelines();
       }
       this.allTimelines.forEach((v) => {
-        //突然有一天数据格式不一致了 可能是fflogs改返回值了? 对现有数据进行修复
+        //突然有一天數據格式不一致了 可能是fflogs改返回值了? 對現有數據進行修復
         if (Util.iconToJobEnum(v.condition.job as FFIcon))
           v.condition.job = Util.jobEnumToJob(Util.iconToJobEnum(v.condition.job as FFIcon));
       });

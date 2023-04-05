@@ -26,12 +26,12 @@ export interface ITimelineLine {
 }
 
 export enum TimelineConfigEnum {
-  显示范围 = "displayDuration",
-  变色时间 = "discoloration",
-  零后持续 = "hold",
-  战前准备 = "preBattle",
+  顯示範圍 = "displayDuration",
+  變色時間 = "discoloration",
+  零后持續 = "hold",
+  戰前準備 = "preBattle",
   TTS提前量 = "ttsAdvance",
-  // 刷新频率 = "refreshRateMs",
+  // 重新整理頻率 = "refreshRateMs",
 }
 
 export type TimelineConfigTranslate = Record<TimelineConfigEnum, string>;
@@ -39,10 +39,10 @@ export type TimelineConfigValues = Record<TimelineConfigEnum, number>;
 export type ShowStyleTranslate = Record<ShowStyleConfigEnum, string>;
 export type ShowStyle = Record<ShowStyleConfigEnum, number>;
 export enum ShowStyleConfigEnum {
-  总宽度 = "--timeline-width",
-  未到来缩放 = "--normal-scale",
-  即将到来缩放 = "--up-coming-scale",
-  字体尺寸 = "--font-size",
-  变色动画时间 = "--tras-duration",
-  未到来不透明度 = "--opacity",
+  總寬度 = "--timeline-width",
+  未到來縮放 = "--normal-scale",
+  即將到來縮放 = "--up-coming-scale",
+  字型尺寸 = "--font-size",
+  變色動畫時間 = "--tras-duration",
+  未到來不透明度 = "--opacity",
 }

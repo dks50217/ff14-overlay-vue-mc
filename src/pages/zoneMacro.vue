@@ -11,7 +11,7 @@ const [help, toggleHelp] = useToggle(false);
 const macroStore = useMacroStore();
 macroStore.formatAllWaymarkPlaceData();
 {
-  //兼容旧数据的更新策略 日后删除
+  //相容舊數據的更新策略 日後刪除
   for (const macros in macroStore.data.zoneId) {
     for (const key in macroStore.data.zoneId[macros]) {
       const item = macroStore.data.zoneId[macros][key];
@@ -78,8 +78,8 @@ const raidEmulatorOnLoad = async () => {
       }),
     ]);
     if (!websocketConnected) {
-      ElMessageBox.alert(`请先启动ACT，再打开此页面<img src='${actWS}' style='width:100%'>`, "未检测到ACT连接", {
-        confirmButtonText: "确定",
+      ElMessageBox.alert(`請先啟動ACT，再打開此頁面<img src='${actWS}' style='width:100%'>`, "未檢測到ACT連線", {
+        confirmButtonText: "確定",
         dangerouslyUseHTMLString: true,
       });
     }
@@ -97,7 +97,7 @@ onMounted(() => {
         macroStore.data.zoneId[macroStore.selectZone]?.length === 0) &&
       defaultMacro.zoneId[macroStore.selectZone]
     ) {
-      ElMessage.success("用户数据为空，加载默认数据");
+      ElMessage.success("用戶數據為空，載入預設數據");
       macroStore.data.zoneId[macroStore.selectZone] = defaultMacro.zoneId[macroStore.selectZone];
     }
   });
@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
   <el-container rd-1 m-0 p-0 absolute left-0 top-0 v-show="macroStore.show" class="elcontainer">
     <el-header flex="~ wrap gap1" height="auto" p-l-1 class="elheader">
       <el-space>
-        <el-button type="primary" size="small" :icon="Position" @click="macroStore.positioning()">当前</el-button>
+        <el-button type="primary" size="small" :icon="Position" @click="macroStore.positioning()">目前</el-button>
         <el-select
           size="small"
           style="max-width: 12rem; min-width: 6rem"
@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
           class="main-box-card"
         >
           <p m-t-2 m-b-2 v-show="!macro.Editable" v-html="macro.Name" font-bold></p>
-          <el-input size="small" v-show="macro.Editable" v-model="macro.Name" placeholder="宏标题" />
+          <el-input size="small" v-show="macro.Editable" v-model="macro.Name" placeholder="宏標題" />
           <div v-if="macro.Type === 'macro'">
             <article v-if="!macro.Editable">
               <div v-for="(m, o) in macro.Text?.split('\n')" :key="o" class="macroText">{{ m }}</div>
@@ -178,7 +178,7 @@ onBeforeUnmount(() => {
               v-model="macro.Text"
               :autosize="{ minRows: 3 }"
               type="textarea"
-              placeholder="宏文本"
+              placeholder="宏文字"
               wrap="off"
               style="width: 450px"
             />
@@ -187,16 +187,16 @@ onBeforeUnmount(() => {
               class="buttonArea"
               :style="{ maxHeight: macro.Editable ? '100px' : null, opacity: macro.Editable ? 1 : null }"
             >
-              <el-button :icon="Edit" size="small" @click="macroStore.editMacroMacro(macro)">编辑</el-button>
+              <el-button :icon="Edit" size="small" @click="macroStore.editMacroMacro(macro)">編輯</el-button>
               <el-button :icon="ChatSquare" size="small" type="info" @click="macroStore.sendMacroEcho(macro.Text)"
-                >默语</el-button
+                >默語</el-button
               >
               <el-button
                 :icon="ChatDotSquare"
                 size="small"
                 type="primary"
                 @click="macroStore.sendMacroParty(macro.Text)"
-                >小队</el-button
+                >小隊</el-button
               >
             </el-row>
             <el-row v-if="macro.Editable" class="buttonAreaEditing">
@@ -204,19 +204,19 @@ onBeforeUnmount(() => {
                 >完成</el-button
               >
               <el-button type="danger" size="small" :icon="Delete" @click="macroStore.deleteMacro(macro)">
-                删除</el-button
+                刪除</el-button
               ></el-row
             >
           </div>
           <div v-if="macro.Type === 'place'">
             <el-space v-show="macro.Editable">
               <el-table :data="Object.entries(macro.Place)" border size="small">
-                <el-table-column align="center" v-if="macro.Editable" label="启用" width="50">
+                <el-table-column align="center" v-if="macro.Editable" label="啟用" width="50">
                   <template #default="scope">
                     <el-switch v-model="scope.row[1].Active" size="small" style="--el-switch-on-color: #13ce66" />
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="标记" width="50">
+                <el-table-column align="center" label="標記" width="50">
                   <template #default="scope">
                     <span v-show="true">{{ scope.row[0] }}</span>
                   </template>
@@ -286,7 +286,7 @@ onBeforeUnmount(() => {
               class="buttonArea"
               :style="{ maxHeight: macro.Editable ? '100px' : null, opacity: macro.Editable ? 1 : null }"
             >
-              <el-button :icon="Edit" size="small" @click="macroStore.editMacroPlace(macro)">编辑</el-button>
+              <el-button :icon="Edit" size="small" @click="macroStore.editMacroPlace(macro)">編輯</el-button>
               <el-button type="primary" size="small" @click="macroStore.doLocalWayMark(macro.Place)">本地</el-button>
               <el-button type="primary" size="small" @click="macroStore.doSlotWayMark(macro.Place)">插槽</el-button>
             </el-row>
@@ -295,10 +295,10 @@ onBeforeUnmount(() => {
                 >完成</el-button
               >
               <el-button type="danger" size="small" :icon="Delete" @click="macroStore.deleteMacro(macro)"
-                >删除</el-button
+                >刪除</el-button
               >
               <el-button :icon="CopyDocument" size="small" class="export" @click="macroStore.exportWaymarksJson(macro)"
-                >导出JSON</el-button
+                >導出JSON</el-button
               >
             </el-row>
           </div>
@@ -309,22 +309,22 @@ onBeforeUnmount(() => {
       </el-card>
     </el-main>
     <div class="menu">
-      <el-button size="small" @click="macroStore.toggleShow()">隐藏页面</el-button>
+      <el-button size="small" @click="macroStore.toggleShow()">隱藏頁面</el-button>
       <el-button type="success" size="small" @click="macroStore.newOne('macro')">新增宏</el-button>
-      <el-button type="success" size="small" color="#3375b9" @click="macroStore.newOne('place')">新增标点</el-button>
-      <el-button color="#BA5783" size="small" @click="macroStore.importPPJSON()">导入PP</el-button>
-      <el-button type="warning" size="small" @click="macroStore.resetZone()">恢复本图</el-button>
-      <el-button type="danger" size="small" @click="macroStore.resetAllData()">恢复全部</el-button>
-      <el-button type="success" size="small" @click="macroStore.updateZone()">数据更新</el-button>
-      <el-button size="small" @click="toggleHelp()">查看帮助</el-button>
-      <i class="vxe-icon-arrow-down">菜单</i>
+      <el-button type="success" size="small" color="#3375b9" @click="macroStore.newOne('place')">新增標點</el-button>
+      <el-button color="#BA5783" size="small" @click="macroStore.importPPJSON()">匯入PP</el-button>
+      <el-button type="warning" size="small" @click="macroStore.resetZone()">恢復本圖</el-button>
+      <el-button type="danger" size="small" @click="macroStore.resetAllData()">恢復全部</el-button>
+      <el-button type="success" size="small" @click="macroStore.updateZone()">數據更新</el-button>
+      <el-button size="small" @click="toggleHelp()">檢視幫助</el-button>
+      <i class="vxe-icon-arrow-down">菜單</i>
     </div>
   </el-container>
 </template>
 <style lang="scss">
 @import "@/css/ffxiv-axis-font-icons.css";
 * {
-  font-family: "FFXIV", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑",
+  font-family: "FFXIV", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微軟雅黑",
     Arial, sans-serif;
   pointer-events: initial;
 }

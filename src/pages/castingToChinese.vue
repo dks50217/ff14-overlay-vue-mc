@@ -77,19 +77,19 @@ document.addEventListener("onOverlayStateUpdate", (e: any) => {
 <template>
   <el-container>
     <el-header v-show="showSettings" class="settings">
-      <form>宽度: <el-input-number v-model="settings.width" :min="20" :max="1000" size="small" controls-position="right" /></form>
-      <form>显示倒计时: <el-switch v-model="settings.showCountdown" /></form>
-      <form>显示进度条: <el-switch v-model="settings.showProgress" /></form>
-      <form>显示中文: <el-switch v-model="settings.showActionChinese" /></form>
-      <form>延迟(ms): <el-input-number v-model="settings.ping" :min="0" :max="1000" size="small" controls-position="right" /></form>
+      <form>寬度: <el-input-number v-model="settings.width" :min="20" :max="1000" size="small" controls-position="right" /></form>
+      <form>顯示倒計時: <el-switch v-model="settings.showCountdown" /></form>
+      <form>顯示進度條: <el-switch v-model="settings.showProgress" /></form>
+      <form>顯示中文: <el-switch v-model="settings.showActionChinese" /></form>
+      <form>延遲(ms): <el-input-number v-model="settings.ping" :min="0" :max="1000" size="small" controls-position="right" /></form>
       <form>保留(ms): <el-input-number v-model="settings.keep" :min="0" :max="1000" size="small" controls-position="right" /></form>
-      <form>倒计时偏移X: <el-input-number v-model="settings.offsetCountdownX" :min="-1000" :max="1000" size="small" /></form>
-      <form>倒计时偏移Y: <el-input-number v-model="settings.offsetCountdownY" :min="-1000" :max="1000" size="small" controls-position="right" /></form>
+      <form>倒計時偏移X: <el-input-number v-model="settings.offsetCountdownX" :min="-1000" :max="1000" size="small" /></form>
+      <form>倒計時偏移Y: <el-input-number v-model="settings.offsetCountdownY" :min="-1000" :max="1000" size="small" controls-position="right" /></form>
       <form>中文偏移X: <el-input-number v-model="settings.offsetActionChineseX" :min="-1000" :max="1000" size="small" /></form>
       <form>中文偏移Y: <el-input-number v-model="settings.offsetActionChineseY" :min="-1000" :max="1000" size="small" controls-position="right" /></form>
-      <form>倒计时字号(px): <el-input-number v-model="settings.fontSizeCountDown" :min="1" :max="100" size="small" controls-position="right" /></form>
-      <form>中文字号(px): <el-input-number v-model="settings.fontSizeActionName" :min="1" :max="100" size="small" controls-position="right" /></form>
-      <form style="width: 10rem">字体: <el-input v-model="settings.fontFamily" size="small" clearable @clear="settings.fontFamily = 'SmartisanHei'" /></form>
+      <form>倒計時字號(px): <el-input-number v-model="settings.fontSizeCountDown" :min="1" :max="100" size="small" controls-position="right" /></form>
+      <form>中文字號(px): <el-input-number v-model="settings.fontSizeActionName" :min="1" :max="100" size="small" controls-position="right" /></form>
+      <form style="width: 10rem">字型: <el-input v-model="settings.fontFamily" size="small" clearable @clear="settings.fontFamily = 'SmartisanHei'" /></form>
     </el-header>
     <el-main v-show="data.targetCast && now - data.targetCast.overTime + ping < settings.keep" :style="{ fontFamily: settings.fontFamily }">
       <el-row>

@@ -42,9 +42,9 @@ export const useCastingMonitorStore = defineStore("castingMonitor", {
   actions: {
     testAction(): void {
       const actionId = testActions[Math.floor(Math.random() * testActions.length)];
-      this.pushAction(Date.now(), 14, "贤者技能随机", this.focusTargetId, actionId, 1);
+      this.pushAction(Date.now(), 14, "賢者技能隨機", this.focusTargetId, actionId, 1);
       setTimeout(() => {
-        this.pushAction(Date.now(), 15, "贤者技能随机", this.focusTargetId, actionId);
+        this.pushAction(Date.now(), 15, "賢者技能隨機", this.focusTargetId, actionId);
       }, 1000);
     },
     testItem(): void {
@@ -57,14 +57,14 @@ export const useCastingMonitorStore = defineStore("castingMonitor", {
       this.handlePartyChanged({
         party: fakeParty
           ? [
-              { id: "10000001", name: "测试张三", job: 24, inParty: true, src: "" },
-              { id: "10000002", name: "测试李四", job: 25, inParty: true, src: "" },
-              { id: "10000004", name: "测试王五", job: 19, inParty: true, src: "" },
-              { id: "10000005", name: "测试赵六", job: 23, inParty: true, src: "" },
-              { id: "10000006", name: "测试孙七", job: 39, inParty: true, src: "" },
-              { id: "10000007", name: "测试周八", job: 40, inParty: true, src: "" },
-              { id: "10000008", name: "测试吴九", job: 37, inParty: true, src: "" },
-              { id: "10000009", name: "测试郑十", job: 38, inParty: true, src: "" },
+              { id: "10000001", name: "測試張三", job: 24, inParty: true, src: "" },
+              { id: "10000002", name: "測試李四", job: 25, inParty: true, src: "" },
+              { id: "10000004", name: "測試王五", job: 19, inParty: true, src: "" },
+              { id: "10000005", name: "測試趙六", job: 23, inParty: true, src: "" },
+              { id: "10000006", name: "測試孫七", job: 39, inParty: true, src: "" },
+              { id: "10000007", name: "測試周八", job: 40, inParty: true, src: "" },
+              { id: "10000008", name: "測試吳九", job: 37, inParty: true, src: "" },
+              { id: "10000009", name: "測試鄭十", job: 38, inParty: true, src: "" },
             ]
           : [],
       });
@@ -87,7 +87,7 @@ export const useCastingMonitorStore = defineStore("castingMonitor", {
         let itemIsHQ = false;
         if (/^(?:item|mount)_/.test(abilityName)) {
           abilityId = parseInt(abilityName.replace(/^.+_/, ""), 16);
-          //HQ道具 item_fXXXX （转十进制则为10XXXXXX）
+          //HQ道具 item_fXXXX （轉十進制則為10XXXXXX）
           if (abilityId > 983040) {
             abilityId = parseInt(abilityId.toString().slice(-5), 10);
             itemIsHQ = true;
@@ -166,19 +166,19 @@ export const useCastingMonitorStore = defineStore("castingMonitor", {
           }
         }
         if (!Object.keys(this.partyData).includes(this.focusTargetId)) {
-          // 没有之前监控的目标，重置为玩家本人。
+          // 沒有之前監控的目標，重置為玩家本人。
           this.focusTargetId = this.playerId;
         }
       } else {
-        // 没有队伍，重置为玩家本人。
+        // 沒有隊伍，重置為玩家本人。
         this.focusTargetId = this.playerId;
-        // 清空队伍数据
+        // 清空隊伍數據
         this.partyData.length = 0;
       }
     },
     handleClickChangeTarget(targetId: string): void {
       if (targetId === this.focusTargetId) {
-        // 重复点击，重置为玩家本人。
+        // 重複點選，重置為玩家本人。
         this.focusTargetId = this.playerId;
       } else {
         this.focusTargetId = targetId;

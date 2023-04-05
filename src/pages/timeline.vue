@@ -6,29 +6,29 @@ import { ITimeline, ITimelineCondition, ITimelineLine, ShowStyle, TimelineConfig
 
 const timelineStore = useTimelineStore();
 const timelinePageData = reactive({
-  loadedTimeline: [] as ITimelineLine[], //显示在页面上的时间轴
-  optionalTimeline: [] as ITimeline[], //有多个供选择的时间轴
+  loadedTimeline: [] as ITimelineLine[], //顯示在頁面上的時間軸
+  optionalTimeline: [] as ITimeline[], //有多個供選擇的時間軸
 });
-const baseTimeMs = ref(0); //战斗开始时间 每场战斗中这个值应该是固定的
-const runtimeTimeSeconds = ref(0 - timelineStore.configValues.preBattle); //当前进行到多少秒了 相对与baseTime来说 （战斗时间）  时间轴时间将以他为基准进行计算
-const offsetTimeMS = ref(0); //sync产生的时间轴偏移 会在baseTimeMs后附加 以影响runtimeTime
-// let runtimeTimer: NodeJS.Timer; //计时器用以循环刷新界面
-let ttsSuppressFlag = false; //防止tts重复
-// let ttsSuppressMs = 300; // tts重复阈值
-//每次get时间轴时被传入的条件对象
+const baseTimeMs = ref(0); //戰鬥開始時間 每場戰鬥中這個值應該是固定的
+const runtimeTimeSeconds = ref(0 - timelineStore.configValues.preBattle); //目前進行到多少秒了 相對與baseTime來說 （戰鬥時間）  時間軸時間將以他為基準進行計算
+const offsetTimeMS = ref(0); //sync產生的時間軸偏移 會在baseTimeMs后附加 以影響runtimeTime
+// let runtimeTimer: NodeJS.Timer; //計時器用以循環重新整理界面
+let ttsSuppressFlag = false; //防止tts重複
+// let ttsSuppressMs = 300; // tts重複閾值
+//每次get時間軸時被傳入的條件對像
 const condition = useStorage("timeline-condition", {
   zoneId: "0",
   job: "NONE",
 } as ITimelineCondition);
 const devMode = ref(window.location.href.match(/localhost/));
-//保存最后一次选择的时间轴，用于团灭时重新加载
+//儲存最後一次選擇的時間軸，用於團滅時重新載入
 // let lastUsedTimeline: ITimeline;
 
 const syncLines = computed(() => timelinePageData.loadedTimeline.filter((item) => item.sync));
 const loadedTimelineTTS = computed(() => timelinePageData.loadedTimeline.filter((v) => v.tts));
 init();
 
-//页面初始化
+//頁面初始化
 function init() {
   addOverlayListener("onLogEvent", handleLogEvent);
   addOverlayListener("onPlayerChangedEvent", handlePlayerChangedEvent);
@@ -39,7 +39,7 @@ function init() {
   timelineStore.loadTimelineSettings();
   if (!Swal.isVisible()) {
     Swal.fire({
-      text: `${timelineStore.allTimelines.length}条时间轴已就绪`,
+      text: `${timelineStore.allTimelines.length}條時間軸已就緒`,
       showConfirmButton: false,
       timer: 1500,
       backdrop: false,
@@ -62,27 +62,27 @@ function openSettings() {
   }, 500);
 }
 
-//从数据列表中根据玩家职业与地区获得一个或多个时间轴
+//從數據列表中根據玩家職業與地區獲得一個或多個時間軸
 function getTimeline(condition: ITimelineCondition) {
   stopTimeline();
   timelinePageData.loadedTimeline.length = 0;
   timelinePageData.optionalTimeline.length = 0;
   let candidate: ITimeline[] = timelineStore.getTimeline(condition);
   if (candidate.length === 1) {
-    //单个结果
+    //單個結果
     mountTimeline(candidate[0]);
   } else if (candidate.length > 1) {
-    //多个结果
+    //多個結果
     timelinePageData.optionalTimeline = candidate;
   }
 }
 
-//用户选择了某个时间轴
+//使用者選擇了某個時間軸
 function selectedTimeline(timeline: ITimeline) {
   mountTimeline(timeline);
 }
 
-//载入时间轴页面
+//載入時間軸頁面
 async function mountTimeline(timeline: ITimeline, stopLoadedTimeline: boolean = true) {
   stopLoadedTimeline && stopTimeline();
   ttsSuppressFlag = false;
@@ -92,7 +92,7 @@ async function mountTimeline(timeline: ITimeline, stopLoadedTimeline: boolean = 
     Swal.fire({
       position: "top-end",
       icon: "success",
-      text: `加载了${timeline.name}~`,
+      text: `載入了${timeline.name}~`,
       showConfirmButton: false,
       timer: 1000,
       backdrop: false,
@@ -102,7 +102,7 @@ async function mountTimeline(timeline: ITimeline, stopLoadedTimeline: boolean = 
   setTimeout(() => (ttsSuppressFlag = true), 500);
 }
 
-//停止当前
+//停止目前
 function stopTimeline() {
   // clearInterval(Number(runtimeTimer));
   baseTimeMs.value = 0;
@@ -111,7 +111,7 @@ function stopTimeline() {
   timelinePageData.loadedTimeline.map((v) => (v.alertAlready = false));
 }
 
-//页面时间轴开始播放
+//頁面時間軸開始播放
 function startTimeline(countdownSeconds: number, preventTTS = true) {
   if (preventTTS) {
     ttsSuppressFlag = false;
@@ -136,17 +136,17 @@ function play() {
   }
   requestAnimationFrame(play);
 }
-//日志
+//日誌
 function handleLogEvent(e: { detail: { logs: string[] } }) {
   for (const log of e.detail.logs) {
     let regex = log.match(
-      /^.{14} \w+ 00:(?:00b9|0[12]39)::?(?:距离战斗开始还有|Battle commencing in |戦闘開始まで)(?<cd>\d+)[^（(]+[（(]/i,
+      /^.{14} \w+ 00:(?:00b9|0[12]39)::?(?:距離戰鬥開始還有|Battle commencing in |戦闘開始まで)(?<cd>\d+)[^（(]+[（(]/i,
     );
     if (regex) {
-      //倒计时
+      //倒計時
       startTimeline(parseInt(regex!.groups!.cd));
     } else if (/^.{14} Director 21:.{8}:4000000F/.test(log) || /^.{14} ChatLog 00:0038::end$/.test(log)) {
-      //团灭
+      //團滅
       stopTimeline();
       // mountTimeline(lastUsedTimeline);
     } else if (/^.{14} ChatLog 00:0038::/.test(log)) {
@@ -157,7 +157,7 @@ function handleLogEvent(e: { detail: { logs: string[] } }) {
         timeline && mountTimeline(timeline, false);
       }
     } else {
-      //是否触发了某行的sync
+      //是否觸發了某行的sync
       const timelineSync = syncLines.value.find((item) => {
         return (
           item.sync!.test(log) &&
@@ -165,13 +165,13 @@ function handleLogEvent(e: { detail: { logs: string[] } }) {
           runtimeTimeSeconds.value <= item.time + Number(item.windowAfter)
         );
       });
-      //如果匹配sync则同步到time，有jump则同步至jump
+      //如果匹配sync則同步到time，有jump則同步至jump
       if (timelineSync) syncTimeline(timelineSync.jump || timelineSync.time);
     }
   }
 }
 
-//同步页面时间轴
+//同步頁面時間軸
 function syncTimeline(targetTime: number) {
   ttsSuppressFlag = false;
   // setTimeout(() => (ttsSuppressFlag = true), targetTime <= 0 ? 0 : 500);
@@ -183,7 +183,7 @@ function syncTimeline(targetTime: number) {
   // }
 }
 
-//玩家状态（职业）
+//玩家狀態（職業）
 function handlePlayerChangedEvent(e: any) {
   if (e.detail.job !== condition.value.job) {
     condition.value.job = e.detail.job;
@@ -193,14 +193,14 @@ function handlePlayerChangedEvent(e: any) {
   }
 }
 
-//切换场景
+//切換場景
 function handleChangeZone(e: any) {
   condition.value.zoneId = String(e.zoneID);
   // lastUsedTimeline = { name: "", condition: { zoneId: "", job: "NONE" }, timeline: "", codeFight: "", create: "" };
   getTimeline(condition.value);
 }
 
-//调用TTS
+//呼叫TTS
 function cactbotSay(text: string) {
   if (!text) return;
   if (ttsSuppressFlag) {
@@ -212,7 +212,7 @@ function cactbotSay(text: string) {
   }
 }
 
-//接受广播
+//接受廣播
 function handleBroadcastMessage(e: {
   type: string;
   source: string;
@@ -226,13 +226,13 @@ function handleBroadcastMessage(e: {
 }) {
   if (e.source === "soumuaTimelineSetting" && e.msg.store) {
     Swal.fire({
-      text: `接受到${e.msg.store.allTimelines.length}个时间轴`,
+      text: `接受到${e.msg.store.allTimelines.length}個時間軸`,
       showDenyButton: true,
-      denyButtonText: "覆盖",
+      denyButtonText: "覆蓋",
       showConfirmButton: true,
       confirmButtonText: "追加",
       showCancelButton: true,
-      cancelButtonText: "放弃",
+      cancelButtonText: "放棄",
       backdrop: false,
     }).then((result) => {
       if (result.isConfirmed || result.isDenied) {
@@ -242,7 +242,7 @@ function handleBroadcastMessage(e: {
         timelineStore.showStyle = e.msg.store.showStyle;
         timelineStore.saveTimelineSettings();
         Swal.fire("接受成功");
-        getTimeline(condition.value); //获取新数据之后查询一次
+        getTimeline(condition.value); //獲取新數據之後查詢一次
       }
     });
   }
@@ -287,9 +287,9 @@ function handleInCombatChanged(ev: {
       :lines="timelinePageData.loadedTimeline"
       :runtime="runtimeTimeSeconds"
       :show-style="timelineStore.showStyle"></timeline-timeline-show>
-    <button v-if="devMode" @click="startTimeline(30)">开始从-30</button>
-    <button v-if="devMode" @click="startTimeline(0)">开始从0</button>
-    <button v-if="devMode" @click="stopTimeline()">团灭</button>
+    <button v-if="devMode" @click="startTimeline(30)">開始從-30</button>
+    <button v-if="devMode" @click="startTimeline(0)">開始從0</button>
+    <button v-if="devMode" @click="stopTimeline()">團滅</button>
     <span v-if="devMode">{{ runtimeTimeSeconds }}</span>
   </div>
 </template>

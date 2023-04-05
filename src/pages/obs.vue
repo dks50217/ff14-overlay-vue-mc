@@ -29,7 +29,7 @@ onMounted(async () => {
     await connect();
     obs.call("GetRecordStatus").then((v) => (status.recording = v.outputActive));
   } else {
-    VXETable.modal.alert({ content: "先锁定悬浮窗，再填写端口与密码", title: "初次使用", width: "80%", size: "mini" });
+    VXETable.modal.alert({ content: "先鎖定懸浮窗，再填寫埠與密碼", title: "初次使用", width: "80%", size: "mini" });
   }
 });
 onUnmounted(() => {
@@ -47,7 +47,7 @@ async function connect() {
     .connect(`ws://127.0.0.1:${data.value.port}`, data.value.password)
     .then((_v) => {
       VXETable.modal.message({
-        content: "连接成功",
+        content: "連線成功",
         status: "success",
         width: "7rem",
         size: "mini",
@@ -59,7 +59,7 @@ async function connect() {
     })
     .catch((e) => {
       VXETable.modal.message({
-        content: "连接失败",
+        content: "連線失敗",
         status: "error",
         width: "7rem",
         size: "mini",
@@ -97,9 +97,9 @@ function onRecordStateChanged(e: { outputActive: boolean; outputState: string })
 }
 async function handleLogEvent(e: { detail: { logs: string[] } }) {
   for (const log of e.detail.logs) {
-    if (/^.{14} \w+ 00:(?:00B9|0[12]39)::?(?:距离战斗开始还有|Battle commencing in |戦闘開始まで)\d+[^（(]+[（(]/i.test(log)) start();
+    if (/^.{14} \w+ 00:(?:00B9|0[12]39)::?(?:距離戰鬥開始還有|Battle commencing in |戦闘開始まで)\d+[^（(]+[（(]/i.test(log)) start();
     else if (
-      /^.{14} (?:Director 21:.{8}:4000000F|Territory 01:|ChatLog 00:0038::end$|ChatLog 00:(?:00B9|0[12]39)::(?:.+取消了战斗开始倒计时。|Countdown canceled by .+\.|.+により、戦闘開始カウントがキャンセルされました。))/i.test(
+      /^.{14} (?:Director 21:.{8}:4000000F|Territory 01:|ChatLog 00:0038::end$|ChatLog 00:(?:00B9|0[12]39)::(?:.+取消了戰鬥開始倒計時。|Countdown canceled by .+\.|.+により、戦闘開始カウントがキャンセルされました。))/i.test(
         log,
       )
     )
@@ -128,7 +128,7 @@ function handlePartyChanged(e: { party: any[] }) {
     </div>
     <div v-show="!status.connecting">
       <vxe-button class="btns" style="width: auto !important" size="medium" icon="vxe-icon-eye-fill-close" @click="hideUntilConnection = true"
-        >隐藏页面</vxe-button
+        >隱藏頁面</vxe-button
       >
     </div>
   </header>
@@ -136,33 +136,33 @@ function handlePartyChanged(e: { party: any[] }) {
     <vxe-form :data="data">
       <vxe-form-item span="24">
         <template #default="{ data }">
-          自动录制最少小队人数
+          自動錄製最少小隊人數
           <vxe-input v-model="data.greaterThanOrEqualTo" size="small" type="integer" min="0" max="8" style="width: 3rem; margin-right: 5px"></vxe-input>
         </template>
       </vxe-form-item>
       <vxe-form-item span="24">
         <template #default="{ data }">
-          端口
-          <vxe-input v-model="data.port" size="small" placeholder="端口号" style="width: 4rem; margin-right: 5px"></vxe-input>
+          埠
+          <vxe-input v-model="data.port" size="small" placeholder="埠號" style="width: 4rem; margin-right: 5px"></vxe-input>
         </template>
       </vxe-form-item>
       <vxe-form-item span="24">
         <template #default="{ data }">
-          密码
-          <vxe-input v-model="data.password" size="small" placeholder="密码" type="password" style="width: 12rem"></vxe-input>
+          密碼
+          <vxe-input v-model="data.password" size="small" placeholder="密碼" type="password" style="width: 12rem"></vxe-input>
           <vxe-button
-            content="无法输入"
+            content="無法輸入"
             size="mini"
             icon="vxe-icon-question"
             type="text"
             status="info"
-            @click="VXETable.modal.message({ content: '先点击ACT，再点击悬浮窗，即可正常输入' })"
+            @click="VXETable.modal.message({ content: '先點選ACT，再點選懸浮窗，即可正常輸入' })"
           ></vxe-button>
         </template>
       </vxe-form-item>
     </vxe-form>
-    <vxe-button size="mini" :status="'primary'" icon="vxe-icon-swap" content="连接" @click="connect"></vxe-button>
-    <vxe-button type="text" status="info" size="mini" icon="vxe-icon-warning-circle" content="未连接到OBS" :disabled="true"></vxe-button>
+    <vxe-button size="mini" :status="'primary'" icon="vxe-icon-swap" content="連線" @click="connect"></vxe-button>
+    <vxe-button type="text" status="info" size="mini" icon="vxe-icon-warning-circle" content="未連線到OBS" :disabled="true"></vxe-button>
   </main>
 </template>
 <style lang="scss">
